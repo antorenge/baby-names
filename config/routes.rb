@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      get 'babies/index'
+      post 'babies/create'
+      get '/show/:id', to: 'babies#show'
+      delete '/destroy/:id', to: 'babies#destroy'
+    end
+  end
   root 'homepage#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get '/*path' => 'homepage#index'
 end
